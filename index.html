@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Animations</title>
+  </head>
+  <body>
+    <div class="audience">
+      <img src="https://live.staticflickr.com/8221/8384190878_ce737e8848_b.jpg" alt="Audience" />
+      <div class="basketball-court">
+        <div id="ball"></div> 
+        <div class="court-line"></div>
+        <div class="free-throw-line"></div>
+        <div class="hoop">
+            <div class="backboard"></div>
+            <div class="rim"></div>
+            <div class="net"></div>
+        </div>
+        </div>
+        <script>
+document.addEventListener('DOMContentLoaded', (event) => {
+  const ball = document.getElementById('ball');
+  const court = document.querySelector('.basketball-court');
+
+  function shootBall() {
+    // Ensure the ball isn't already playing the shoot animation
+    if (!ball.classList.contains('ball-clicked')) {
+      ball.classList.add('ball-clicked'); // Add the class to trigger the shoot animation
+      ball.style.animationName = 'shoot';
+    }
+  }
+
+  function onShootAnimationEnd(e) {
+    if (e.animationName === 'shoot') {
+      ball.classList.remove('ball-clicked'); // Remove the class after shoot animation ends
+      ball.style.animationName = ''; // Clear the inline animation-name style
+
+      // Revert to bounce animation if the court is hovered
+      if (court.matches(':hover')) {
+        ball.style.animationName = 'bounce';
+      }
+    }
+    // Remove this event listener to prevent multiple triggers
+    ball.removeEventListener('animationend', onShootAnimationEnd);
+  }
+
+  court.addEventListener('click', shootBall);
+  ball.addEventListener('animationend', onShootAnimationEnd);
+});
+          </script>
+          
+
+  </body>
+</html>

@@ -1,0 +1,151 @@
+.audience {
+  position: absolute; /* Position relative to the viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: cover; /* Prevent any overflow from the rotated image */
+  z-index: 1; /* Ensure it's behind everything */
+}
+
+.audience img {
+  width: 100vh; /* Set the width to viewport height for rotation */
+  height: 100vw; /* Set the height to viewport width for rotation */
+  object-fit: cover; /* Cover the container without stretching */
+  position: absolute;
+  /* Stretch image to full height and width */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg); /* Rotate the image */
+}
+
+
+/* Styles for the ball */
+  #ball {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: 1;
+    right: 150px;
+    bottom: 250px;
+    background-color: orange;
+    border: 3px solid black;
+    border-radius: 50%;
+    animation-duration: 2s;
+    animation-name: bounce;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+    animation-play-state: paused;
+  }
+
+  .basketball-court:hover #ball {
+    animation-play-state: running;
+  }
+  
+  
+  @keyframes bounce {
+    0%, 20%, 40%, 60%, 80%, 100% {transform: translateY(0);} 
+    10% {transform: translateY(-35px);}
+    30% {transform: translateY(-33px);}
+    50% {transform: translateY(-30px);} 
+    70% {transform: translateY(-15px);} 
+    90% {transform: translateY(-4px);}
+ } 
+
+ .ball-clicked {
+  animation-name: shoot;
+  animation-fill-mode: forwards;  
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+ }
+  
+@keyframes shoot {
+  0% {
+    transform: scale(1);
+    bottom: 250px;
+    right: 150px;
+  }
+  50% {
+    transform: translateY(-500px) scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+    bottom: 250px;
+    right: 150px;
+  }
+}
+
+
+/* Styles for the Court */
+  .basketball-court {
+    position: relative;
+    width: 360px; /* Adjust the size according to your layout */
+    height: 100vh;
+    background-color: #f0e68c; /* Light wood color for the court */
+}
+
+.hoop {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 60px;
+  height: 70px;
+}
+
+.backboard {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  background-color: #fff;
+  border: 3px solid #000;
+  bottom: 30px; /* Position at the bottom of the hoop container */
+  top: 5px;
+  right: 150px;
+  z-index: 0;
+}
+
+.rim {
+  position: absolute;
+  top: 40px; /* Adjust so it's at the bottom of the backboard */
+  bottom: 2px;
+  right: 160px;
+  width: 40px;
+  height: 5px;
+  background-color: red;
+  border: 3px solid #000;
+  border-radius: 20px;
+  z-index: 0;
+}
+
+.net {
+  position: absolute;
+  top: 50px;
+  right: 164px;
+  width: 37px;
+  height: 30px;
+  background: linear-gradient(#fff 25%, #0000 75%); /* Simple representation of a net */
+  background-size: 5px 5px; /* Size of the 'holes' in the net */
+  z-index: 0;
+}
+
+.court-line {
+    position: absolute;
+    right: 30px; /* Adjust based on court size */
+    top: 40px; /* Adjust based on court size */
+    width: 300px; /* Adjust based on court size */
+    height: 700px;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 0 0 150px 150px;
+
+}
+
+.free-throw-line {
+    position: absolute;
+    right: 31px; /* Adjust based on court size */
+    bottom: 250px; /* Adjust based on court size */
+    width: 300px; /* Adjust based on court size */
+    height: 1px;
+    background-color: black;
+}
